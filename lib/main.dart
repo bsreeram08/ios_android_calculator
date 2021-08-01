@@ -31,19 +31,12 @@ class _MainScreenPageState extends State<MainScreen> {
     return Scaffold(
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             BottomInputPanel(
               primaryPanelColor: Color(0xff333333),
               rightSidePanelColor: Color(0xffFF9D00),
               topPanelColor: Color(0xffA5A5A5),
-            ),
-            RoundedButton(
-              dataWidget: Text(
-                "+",
-                style: PrimaryButtonFonts.primaryWhite,
-              ),
-              circleColor: Color(0xff102020),
             ),
           ],
         ),

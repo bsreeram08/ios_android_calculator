@@ -3,17 +3,22 @@ import 'package:flutter/material.dart';
 class RoundedButton extends StatelessWidget {
   Widget dataWidget;
   Color circleColor;
+  String label;
   RoundedButton({
     required this.dataWidget,
     required this.circleColor,
+    required this.label,
   });
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 60,
-      height: 60,
-      child: Center(
-        child: dataWidget,
+      child: FlatButton(
+        onPressed: () {
+          print("Tapped : ${this.label}");
+        },
+        child: Center(
+          child: dataWidget,
+        ),
       ),
       decoration: BoxDecoration(
         color: circleColor,
