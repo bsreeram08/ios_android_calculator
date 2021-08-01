@@ -1,6 +1,6 @@
 # ios_android_calculator
 
-A new Flutter project.
+A new Flutter project for calculator.
 
 ## Getting Started
 
