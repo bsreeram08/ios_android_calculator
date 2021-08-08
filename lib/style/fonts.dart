@@ -24,4 +24,22 @@ class PrimaryButtonFonts {
     fontWeight: FontWeight.w600,
     color: Colors.black,
   );
+  static final additionalOptions = getAppFont(
+    fontSize: 24,
+    fontWeight: FontWeight.w800,
+    color: Colors.black,
+  );
+}
+
+class PrimaryTextFonts {
+  static final resultText = getAppFont(
+    fontSize: 26,
+    fontWeight: FontWeight.w800,
+    color: Color(0xffa5a5a5),
+  );
+  static final panelText = getAppFont(
+    fontSize: 58,
+    fontWeight: FontWeight.w800,
+    color: Colors.white,
+  );
 }

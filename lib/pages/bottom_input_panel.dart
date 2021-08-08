@@ -4,13 +4,13 @@ import 'package:ios_android_calculator/common_widgets/common_widgets.dart';
 
 class BottomInputPanel extends StatelessWidget {
   final Color primaryPanelColor, rightSidePanelColor, topPanelColor;
-  late final List<Widget> listOfItems;
+  final List<Widget> rows = [];
   BottomInputPanel({
     required this.primaryPanelColor,
     required this.rightSidePanelColor,
     required this.topPanelColor,
   }) {
-    final List<Widget> listOfToggles = ['e', '+/-', '%']
+    final List<Widget> listOfToggles = ['C', 'e', '%']
         .map(
           (data) => RoundedButton(
             label: data,
@@ -56,27 +56,36 @@ class BottomInputPanel extends StatelessWidget {
                   circleColor: ButtonColors.numberButtonColor,
                 ))
             .toList();
-    listOfItems = [
+    final List<Widget> listOfItems = [
       ...listOfToggles,
       ...numberPanel,
     ];
     for (var iter = 0; iter < listOfRightPanel.length; iter++) {
       listOfItems.insert((3 * (iter + 1) + (1 * iter)), listOfRightPanel[iter]);
     }
+
+    for (var iter1 = 0; iter1 < listOfItems.length; iter1 += 4) {
+      final List<Widget> tempList = [];
+      for (var iter2 = iter1; iter2 < iter1 + 4; iter2++) {
+        tempList.add(
+          listOfItems[iter2],
+        );
+      }
+      rows.add(
+        Row(
+          children: tempList,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+        ),
+      );
+    }
   }
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 500,
-      width: 400,
       color: Colors.black,
-      child: GridView.count(
-        physics: new NeverScrollableScrollPhysics(),
-        crossAxisCount: 4,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-        padding: const EdgeInsets.all(20),
-        children: listOfItems,
+      child: Column(
+        children: rows,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       ),
     );
   }
