@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ios_android_calculator/style/styles.dart';
 import 'package:ios_android_calculator/common_widgets/common_widgets.dart';
+import 'package:ios_android_calculator/models/models.dart';
 
 class BottomInputPanel extends StatelessWidget {
   final Color primaryPanelColor, rightSidePanelColor, topPanelColor;
@@ -10,17 +11,23 @@ class BottomInputPanel extends StatelessWidget {
     required this.rightSidePanelColor,
     required this.topPanelColor,
   }) {
-    final List<Widget> listOfToggles = ['C', 'e', '%']
+    final List<Operator> listOfToggles1 = [
+      CompoundSingleOperator(displayName: 'C', name: 'Clear', value: CompoundOperatorsEnum.CLEAR, precidenceValue: , widget: widget)
+    ];
+    final List<Operator> listOfToggles = ['C', 'e', '%']
         .map(
-          (data) => RoundedButton(
-            label: data,
-            dataWidget: Text(
-              data,
-              style: PrimaryButtonFonts.primaryBlack,
-            ),
-            circleColor: ButtonColors.toggleButtonColor,
-          ),
-        )
+          (data){
+
+            return RoundedButton(
+              label: data,
+              dataWidget: Text(
+                data,
+                style: PrimaryButtonFonts.primaryBlack,
+              ),
+              circleColor: ButtonColors.toggleButtonColor,
+            )
+          }
+        ).cast<Operator>()
         .toList();
     final List<Widget> listOfRightPanel = ['/', '×', '-', '+']
         .map(

@@ -39,6 +39,69 @@ void handleTopPannelButtonClick(String data) async {
   }
 }
 
-void handleEquationStream(String data){
+void handleEquationStream(String data) {
+  if (!validateEquation(data)) {
+    return;
+  }
   print("Here to handle stream listn");
+}
+
+bool validateEquation(String equation) {
+  List<String> digits = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '0',
+    'π',
+  ];
+  List<String> ops = [
+    '+',
+    '-',
+    '×',
+    '/',
+    '%',
+    '^',
+    '√',
+    '!',
+    '(',
+    ')',
+  ];
+  List<String> addOps = [
+    'INV',
+    'sin(',
+    'cos(',
+    'tan(',
+    'ln(',
+    'log(',
+  ];
+  List<String> valStack = [];
+  List<String> opsStack = [];
+  String temp = '';
+  for (var iter = 0; iter < equation.length; iter++) {
+    print(valStack);
+    print(opsStack);
+    final v = equation[iter];
+    if (digits.contains(v)) {
+      print("Digit");
+      temp = '$temp$v';
+    } else {
+      print("Operator");
+      if (temp != '') valStack.add(temp);
+      temp = '';
+      if (ops.contains(v)) {
+        opsStack.add(v);
+      } else if (addOps.contains(v)) {
+        opsStack.add(v);
+        print("Additional Operators");
+        print("Not handled");
+      }
+    }
+  }
+  return false;
 }
